@@ -1,0 +1,16 @@
+{
+  "name": "basic-crud",
+  "version": "1.0.0",
+  "description": "example practice for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "riyansaputrai007@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "mysqli": "^3.0.6"
+  }
+}
