@@ -3,13 +3,13 @@ const app = appServer();
 const port=process.env.PORT || 3000;
 const route=require('./config/routes');
 const bodyParser=require('body-parser');
-const response=require('./helpers/respon-parser');
+const response=require('./helpers/response-parser');
 
 //secure access
-const apiKey=12345;
+const apiKey="a!@#@#!@$SAFa#RQWER099881!@#";
 app.use((req,res,next)=>{
-    if(req.headers.api_key==apiKey){
-        response.error(res,{status:401,error:"Unauthorized Request"});
+    if(req.headers.api_key!=apiKey){
+        response.error(res,{status:401,error:"Unauthorized"});
         return;
     }
     else{
