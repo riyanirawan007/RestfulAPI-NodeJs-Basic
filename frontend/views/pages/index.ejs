@@ -1,0 +1,40 @@
+<div id='textInfo' class="text-light">This is info text</div>
+<div class="jumbotron bg-info">
+    <h1 class="display-4 text-light">Hello, world!</h1>
+    <p class="lead text-light">This is a simple example for Node JS Backend and Frontend using Express.js and EJS.</p>
+    <hr class="my-4 text-light">
+    <a class="btn btn-success btn-md" href="javascript:void(0)" id="checkAPI" role="button">Check API Connection</a>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        var textInfo=$('#textInfo');
+        var checkAPI=$('#checkAPI');
+        textInfo.hide();
+
+        checkAPI.click(function(){
+            $.ajax({
+                url:'<%=api.BASE_URL%>'
+                ,type:'get'
+                ,dataType:'json'
+                ,headers:{
+                    api_key:'<%=api.STATIC_KEY%>'
+                }
+                ,success:(res)=>{
+                    textInfo.show();
+                    textInfo.html('<div class="alert alert-success" role="alert">\
+                        '+res.message+'\
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">\
+                            <span aria-hidden="true">&times;</span>\
+                            </button>\
+                        </div>');
+                }
+                ,error(res,stat,err)
+                {
+                    alert('error: '+err);
+                }
+            });
+        });
+    });
+</script>

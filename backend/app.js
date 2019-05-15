@@ -4,17 +4,18 @@ const port=process.env.PORT || 3000;
 const route=require('./config/routes');
 const bodyParser=require('body-parser');
 const response=require('./helpers/response-parser');
+const API=require('./config/api');
 
 //secure access
-const apiKey="a!@#@#!@$SAFa#RQWER099881!@#";
 app.use((req,res,next)=>{
-    if(req.headers.api_key!=apiKey){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, api_key");
+    res.header("Access-Control-Allow-Methods",'*');
+    if(req.headers.api_key!=API.config.STATIC_KEY){
         response.error(res,{status:401,error:"Unauthorized"});
         return;
     }
     else{
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         next();
     }
 });
