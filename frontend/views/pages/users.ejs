@@ -131,6 +131,8 @@
                     alert(res.message);
                     formModal.modal('hide');
                     loadData();
+                    $('#id').val(null);
+                    $('#id').attr('disabled','disabled');
                 },
                 error: (res, stat, err) => {
                     alert(err);
